@@ -1,0 +1,43 @@
+<html>
+  <head>
+    <title>Testing for amazon web services</title>
+  </head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+  <body bgcolor=white ng-app="first" ng-controller="firstcontroller" ng-init="init()">
+<form >
+    Name<input type="text" ng-model="field.name">
+    <br>Emailid<input type="text"ng-model="field.email">
+      
+      <br><button ng-click="post()" >Submit</button>
+      </form>
+      <br>
+<div ng-show ="s">
+      <p>Succesfullly uploaded</p>
+      </div>
+    </body>
+    <script>
+    var a=angular.module('first',[]);
+        a.controller("firstcontroller",function($scope,$http)
+                    {
+           $scope.init=function(){
+               $scope.s=false;
+           }
+            
+            $scope.post= function()
+            {    var data=$scope.field
+                console.log(data);
+             
+               $http.post("/post", data).then(function(response){
+                $scope.s=true;
+                   
+               });    
+            }
+     
+            
+            
+            
+        });
+            
+    </script>
+
+</html>
